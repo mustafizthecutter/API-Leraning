@@ -28,4 +28,19 @@ const displayCountries = countries => {
 }
 const loadCountryByName = name => {
     // console.log(name);
+    const url = `https://restcountries.com/v2/name/${name}
+    `;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayCountriesDetail(data[0]))
+
+
+}
+const displayCountriesDetail = detail => {
+    console.log(detail);
+    const divCont = document.getElementById('country-name');
+    divCont.innerHTML = `
+       <h2>${detail.name}</h2>
+       <h2>${detail.capital}</h2>
+       <img width="200px" src="${detail.flag}">`
 }
