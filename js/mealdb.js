@@ -7,7 +7,8 @@ const loadFood = async () => {
 
     inputField.value = "";
     if (inputFieldValue == '') {
-
+        const errorMessage = document.getElementById('notify-section-1');
+        errorMessage.style.display = 'block';
     }
     else {
         const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldValue}`;
@@ -28,7 +29,10 @@ const displayFood = meals => {
     // console.log(meals);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
-    if (meals.length == 0) {
+
+    if (!meals) {
+        const showMessage = document.getElementById('notify-section-2');
+        showMessage.style.display = 'block';
 
     }
     meals.forEach(meal => {
