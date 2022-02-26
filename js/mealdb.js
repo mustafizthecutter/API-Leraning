@@ -6,13 +6,19 @@ const loadFood = async () => {
     // clear data
 
     inputField.value = "";
+    if (inputFieldValue == '') {
+
+    }
+    else {
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldValue}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        displayFood(data.meals);
+
+    }
 
     // load data
 
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldValue}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayFood(data.meals);
 
     // fetch(url)
     //     .then(res => res.json())
@@ -22,6 +28,9 @@ const displayFood = meals => {
     // console.log(meals);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
+    if (meals.length == 0) {
+
+    }
     meals.forEach(meal => {
 
         const div = document.createElement('div');
